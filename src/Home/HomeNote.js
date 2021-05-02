@@ -3,12 +3,20 @@ import Button from 'react-bootstrap/Button';
 
 function HomeNote(props) {
     return (
-        <div className="HomeNote">
-            <h2 align="center">{props.titolo}</h2>
-            <p>{props.testo}</p>
-            <Button onClick={() => props.deleteNote}>Delete</Button>
+        <div className="card text-white bg-dark mb-3">
+            <div className="card-header">
+                {props.titolo}
+                <a onClick={props.edit} className="buttonRightPosition"><img className="buttonIcon" src="Images/Icons/edit.png"/></a>
+            </div>
+            <div className="card-body">
+                <div className="card-text" dangerouslySetInnerHTML={{
+                    __html: props.testo
+                }}>
+                </div>
+            </div>
         </div>
+        
     );
 }
-
 export default HomeNote;
+
