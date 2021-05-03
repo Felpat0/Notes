@@ -15,8 +15,8 @@ function HomeOrganizer() {
   const [notes, setNotes] = useState([
     {
       key: 1,
-      title: "title",
-      content: "<b>ao</b> questa è una nota e io NON SONO LILLO <br/> Basta questo meme non fa più ridere per favore smettetela",
+      title: "Loading...",
+      content: "Loading...",
       datetime: "12-04-2022",
       is_to_do: false,
       is_in_home: true,

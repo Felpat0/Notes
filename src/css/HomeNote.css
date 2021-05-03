@@ -38,3 +38,15 @@
     position: relative;
     height: 100%;
 }
+
+.editor{
+    color: black;
+    position: relative;
+    height: 100%;
+}
+
+.ck-editor__editable_inline {
+    position: relative;
+    min-height: 25em;
+}
+
