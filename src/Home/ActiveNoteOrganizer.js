@@ -5,10 +5,9 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 
 function ActiveNoteOrganizer(props) {
-    const [content, setContent] = useState(props.active.content); //Togliere sta roba e usare direttamente content
     useEffect(() => {
-        if(content == "Loading...")
-            setContent(props.active.content);
+        let previousId;
+        let currentId;
       // empty dependency array means this effect will only run once (like componentDidMount in classes)
       });
     return (
@@ -22,10 +21,15 @@ function ActiveNoteOrganizer(props) {
                     <CKEditor
                         id="ckeditor"
                         editor={ClassicEditor}
-                        data={content}
+                        data={props.active.content}
                         onChange={(event, editor) => {
-                            const data = editor.getData()
-                            setContent(data)
+                            //Check if the note has been changed
+                            if(props.currentNoteId == props.active.key){
+                                const data = editor.getData()
+                                let tempNote = props.active;
+                                tempNote.content = data;
+                                props.editNote(-1, tempNote)
+                            }
                         }}
                         style={{color: + 'red'}}
                     />

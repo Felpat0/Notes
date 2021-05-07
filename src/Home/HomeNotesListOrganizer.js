@@ -20,6 +20,7 @@ function HomeNotesListOrganizer(props){
         }
     });
 
+
     //Order note list by datetime
     currentNoteList.sort(function(a,b){
         return new Date(b.datetime) - new Date(a.datetime);
