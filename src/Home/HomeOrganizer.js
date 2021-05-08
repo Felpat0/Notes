@@ -118,9 +118,13 @@ function HomeOrganizer() {
     let temp = notes;
     temp.map((note) =>{
       if(note.key == id){
+        //Remove not permitted characters from title (html tags)
+        let tmp = document.createElement("DIV");
+        tmp.innerHTML = editedNote.title;
+        editedNote.title = tmp.textContent || tmp.innerText || "";
+        
         note = editedNote;
         setNotes(temp);
-        console.log("editing id: " + id)
       }
     });
   }

@@ -1,5 +1,8 @@
 import './../css/HomeNote.css';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
 import { useEffect, useState } from 'react';
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic"
 import { CKEditor } from '@ckeditor/ckeditor5-react';
@@ -10,11 +13,31 @@ function ActiveNoteOrganizer(props) {
         let currentId;
       // empty dependency array means this effect will only run once (like componentDidMount in classes)
       });
+
     return (
         <div className="card text-white bg-dark mb-3 sticky-top">
-            <div className="card-header">
-                {props.active.title}
-                <a onClick={props.edit} className="buttonRightPosition"><img className="buttonIcon" src="Images/Icons/edit.png"/></a>
+            <Container className="card-header">
+                <Row>
+                    <Col>
+                        <div id="activeTitle" contentEditable="true" onInput={()=>{
+                                //Check if the note has been changed
+                                if(props.currentNoteId == props.active.key){
+                                    let tempNote = props.active;
+                                    tempNote.title = document.getElementById("activeTitle").innerHTML;
+                                    props.editNote(-1, tempNote)
+                                }
+                            }}>
+                                {props.active.title}
+                        </div>
+                    </Col>
+                    <Col> 
+                        <a onClick={props.edit} className="buttonRightPosition"><img className="buttonIcon" src="Images/Icons/edit.png"/></a>
+                    </Col>
+                </Row>
+            </Container>
+            
+            <div style={{display: + 'inline-block'}}>
+               
             </div>
             <div className="card-body" style={{height: 30 + 'rem'}}>
                 <div className="editor">
