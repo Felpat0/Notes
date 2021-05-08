@@ -14,18 +14,19 @@ function HomeNotesListOrganizer(props){
     let currentNoteList = [];
     let currentNotebookName = "Notebook";
     
+    //Get notes for the current notebook
     props.notes.map((note) =>{
         if(note.id_notebook == props.currentNotebookId){
             currentNoteList.push(note);
         }
     });
 
-
     //Order note list by datetime
     currentNoteList.sort(function(a,b){
         return new Date(b.datetime) - new Date(a.datetime);
       });
 
+    //Get current notebook's name
     props.notebooks.map((notebook) =>{
         if(notebook.key == props.currentNotebookId){
             currentNotebookName = notebook.name_notebook;
@@ -37,11 +38,9 @@ function HomeNotesListOrganizer(props){
         <div>
             <div className="mb-2">
                 <Button className="addNoteButton" variant="success" onClick={()=>{
-                    let note = getEmptyNote(props.currentNotebookId);
-                    let key = addNote(getEmptyNote(props.currentNotebookId));
-                    note[0].key = key;
+                    let note = getEmptyNote(props.currentNotebookId, props.notes);
                     props.setNotesFromChild(note.concat(props.notes));
-                    props.setCurrentNoteIdFromChild(key);
+                    props.setCurrentNoteIdFromChild(note[0].key);
                 }}>Add Note</Button>
                 <DropdownButton
                     as={ButtonGroup}
@@ -54,6 +53,10 @@ function HomeNotesListOrganizer(props){
                     {props.notebooks.map((notebook) => (
                         <Dropdown.Item onClick={() => props.setCurrentNotebookIdFromChild(notebook.key)}>{notebook.name_notebook}</Dropdown.Item>
                     ))}
+                    <Dropdown.Divider />
+                        <Dropdown.Item onClick={() => {
+                            //let notebook = getEmptyNotebook();
+                        }}>Create new notebook</Dropdown.Item>
                 </DropdownButton>
             </div>
             <div className="list-group">

@@ -76,6 +76,10 @@ function HomeOrganizer() {
   function setNotesFromChild(notes){
     setNotes(notes);
   }
+
+  function setNotebooksFromChild(notebooks){
+    setNotebooks(notebooks);
+  }
   function setCurrentNotebookIdFromChild(id){
     setCurrentNotebookId(id);
   }
