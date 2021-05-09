@@ -6,8 +6,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Button from 'react-bootstrap/Button';
 
-import getEmptyNote from './../Utilities/GetEmptyNote'
-import {addNote} from './../Utilities/NotesOperations'
+import {getEmptyNote, getEmptyNotebook} from './../Utilities/EmptyObjects'
+import EditNotebookModal from './../Utilities/EditNotebookModal'
 
 //https://getbootstrap.com/docs/5.0/components/list-group/
 function HomeNotesListOrganizer(props){
@@ -55,8 +55,11 @@ function HomeNotesListOrganizer(props){
                     ))}
                     <Dropdown.Divider />
                         <Dropdown.Item onClick={() => {
-                            //let notebook = getEmptyNotebook();
+                            let notebook = getEmptyNotebook(props.notebooks);
+                            props.setNotebooks(props.notebooks.concat(notebook))
+                            props.setCurrentNotebookIdFromChild(notebook[0].key)
                         }}>Create new notebook</Dropdown.Item>
+                        <EditNotebookModal notebook={props.getCurrentNotebook()} setNotebooks={props.setNotebooks}/>
                 </DropdownButton>
             </div>
             <div className="list-group">

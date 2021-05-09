@@ -61,7 +61,7 @@ function HomeOrganizer() {
       <h1><b>Notes</b></h1>
       <div className="row">
         <div className="col-3">
-          <HomeNotesListOrganizer notes={notes} notebooks={notebooks} currentNotebookId={currentNotebookId} setCurrentNotebookIdFromChild={setCurrentNotebookIdFromChild} setCurrentNoteIdFromChild={setCurrentNoteIdFromChild} setNotesFromChild={setNotesFromChild}/>
+          <HomeNotesListOrganizer notes={notes} setNotesFromChild={setNotesFromChild} notebooks={notebooks} setNotebooks={setNotebooksFromChild} currentNotebookId={currentNotebookId} setCurrentNotebookIdFromChild={setCurrentNotebookIdFromChild} getCurrentNotebook={getCurrentNotebook} setCurrentNoteIdFromChild={setCurrentNoteIdFromChild} />
         </div>
         <div className="col-5">
           <ActiveNoteOrganizer active={currentNote} currentNoteId={currentNoteId} editNote={editNote}/>
@@ -109,11 +109,22 @@ function HomeOrganizer() {
   }
 
   function getCurrentNote(){
+    let noteToReturn;
     notes.map((note) =>{
       if(note.key == currentNoteId){
-        setCurrentNote(note);
+        noteToReturn = note;
       }
     });
+  }
+
+  function getCurrentNotebook(){
+    let notebookToReturn;
+    notebooks.map((notebook) =>{
+      if(notebook.key == currentNotebookId){
+        notebookToReturn = notebook;
+      }
+    });
+    return notebookToReturn;
   }
 
   function editNote(id, editedNote){

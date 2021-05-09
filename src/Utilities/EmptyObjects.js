@@ -1,4 +1,4 @@
-const getEmptyNote = (id_notebook, notes) =>{
+export function getEmptyNote(id_notebook, notes){
     console.log(notes)
     //Get current date
     var today = new Date();
@@ -27,5 +27,15 @@ const getEmptyNote = (id_notebook, notes) =>{
     }]
 }
 
-export default getEmptyNote;
+export function getEmptyNotebook(notebooks){
+    //Order notes to get last key
+    let tempNotebooks = notebooks;
+    tempNotebooks.sort(function(a,b){
+        return a.key - b.key;
+      });
+    return [{
+        key: tempNotebooks[tempNotebooks.length - 1].key + 1,
+        name_notebook: "New notebook"
+    }]
+}
 
