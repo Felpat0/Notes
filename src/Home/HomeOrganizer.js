@@ -53,7 +53,7 @@ function HomeOrganizer() {
   }, []);
 
   useEffect(()=>{
-    getCurrentNote();
+    updateCurrentNote();
   })
   
   return (
@@ -61,7 +61,7 @@ function HomeOrganizer() {
       <h1><b>Notes</b></h1>
       <div className="row">
         <div className="col-3">
-          <HomeNotesListOrganizer notes={notes} setNotesFromChild={setNotesFromChild} notebooks={notebooks} setNotebooks={setNotebooksFromChild} currentNotebookId={currentNotebookId} setCurrentNotebookIdFromChild={setCurrentNotebookIdFromChild} getCurrentNotebook={getCurrentNotebook} setCurrentNoteIdFromChild={setCurrentNoteIdFromChild} />
+          <HomeNotesListOrganizer notes={notes} setNotesFromChild={setNotesFromChild} notebooks={notebooks} setNotebooks={setNotebooksFromChild} editNotebook={editNotebook} currentNotebookId={currentNotebookId} setCurrentNotebookIdFromChild={setCurrentNotebookIdFromChild} getCurrentNotebook={getCurrentNotebook} setCurrentNoteIdFromChild={setCurrentNoteIdFromChild} />
         </div>
         <div className="col-5">
           <ActiveNoteOrganizer active={currentNote} currentNoteId={currentNoteId} editNote={editNote}/>
@@ -117,6 +117,14 @@ function HomeOrganizer() {
     });
   }
 
+  function updateCurrentNote(){
+    notes.map((note) =>{
+      if(note.key == currentNoteId){
+        setCurrentNote(note);
+      }
+    });
+  }
+
   function getCurrentNotebook(){
     let notebookToReturn;
     notebooks.map((notebook) =>{
@@ -142,6 +150,22 @@ function HomeOrganizer() {
         setNotes(temp);
       }
     });
+  }
+
+  function editNotebook(editedNotebook){
+    let temp = JSON.parse(JSON.stringify(notebooks));
+
+    temp.map((notebook) => {
+      if(notebook.key == editNotebook.key){
+        //Remove not permitted characters from title (html tags)
+        let tmp = document.createElement("DIV");
+        tmp.innerHTML = editedNotebook.title;
+        editedNotebook.title = tmp.textContent || tmp.innerText || "";
+        console.log(notebooks)
+        notebook = editedNotebook;
+      }
+    });
+    setNotebooks(temp);
   }
 }
 

@@ -10,8 +10,13 @@ function EditNotebookModal(props) {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleSave = () => {
+    let newNotebook = props.notebook;
+    newNotebook.name_notebook = newNotebookName;
+    props.editNotebook(newNotebook);
+    handleClose();
+  }
 
-  console.log(props.notebook)
   return (
     <>
     <Dropdown.Item onClick={handleShow}>Edit current notebook</Dropdown.Item>
@@ -40,7 +45,7 @@ function EditNotebookModal(props) {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSave}>
             Save Changes
           </Button>
         </Modal.Footer>

@@ -59,7 +59,7 @@ function HomeNotesListOrganizer(props){
                             props.setNotebooks(props.notebooks.concat(notebook))
                             props.setCurrentNotebookIdFromChild(notebook[0].key)
                         }}>Create new notebook</Dropdown.Item>
-                        <EditNotebookModal notebook={props.getCurrentNotebook()} setNotebooks={props.setNotebooks}/>
+                        <EditNotebookModal notebook={props.getCurrentNotebook()} setNotebooks={props.setNotebooks} editNotebook={props.editNotebook}/>
                 </DropdownButton>
             </div>
             <div className="list-group">
