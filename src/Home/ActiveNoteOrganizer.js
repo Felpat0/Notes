@@ -39,7 +39,7 @@ function ActiveNoteOrganizer(props) {
             <div style={{display: + 'inline-block'}}>
                
             </div>
-            <div className="card-body" style={{height: 30 + 'rem'}}>
+            <div className="card-body">
                 <div className="editor">
                     <CKEditor
                         id="ckeditor"
@@ -54,7 +54,7 @@ function ActiveNoteOrganizer(props) {
                                 props.editNote(-1, tempNote)
                             }
                         }}
-                        style={{color: + 'red'}}
+                        style={{height: + '25rem'}}
                     />
                 </div>                
             </div>

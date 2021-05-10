@@ -36,7 +36,7 @@ function HomeNotesListOrganizer(props){
     
     return(
         <div>
-            <div className="mb-2">
+            <div className="mb-2" className="ddVisualize">
                 <Button className="addNoteButton" variant="success" onClick={()=>{
                     let note = getEmptyNote(props.currentNotebookId, props.notes);
                     props.setNotesFromChild(note.concat(props.notes));

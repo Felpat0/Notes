@@ -1,12 +1,5 @@
 
 
-.dailyToDoNote{
-    border-style: solid;
-    background-color: #505152;
-    border-color: #202020;
-    color: #FAF3DD;
-}
-
 .buttonRightPosition{
     float: right;
 }
@@ -36,17 +29,30 @@
 
 #activeNoteContent{
     position: relative;
-    height: 100%;
+    height: auto;
+    min-height: 25rem;
+}
+
+.card-body{
+    height: auto;
 }
 
 .editor{
     color: black;
     position: relative;
-    height: 100%;
+    height: auto;
+}
+
+.ck-content{
+    min-height: 24rem;
 }
 
 .ck-editor__editable_inline {
     position: relative;
-    min-height: 25em;
 }
 
+.ddVisualize{
+    position: relative;
+    z-index: 10000;
+    margin-bottom: 0.2rem;
+}
