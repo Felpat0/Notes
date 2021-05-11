@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 
-function EditNotebookModal(props) {
+function NewNotebookModal(props) {
   const [show, setShow] = useState(false);
   const [newNotebookName, setNewNotebookName] = useState(props.notebook.name_notebook);
 
@@ -57,4 +57,4 @@ function EditNotebookModal(props) {
   );
   }
 
-  export default EditNotebookModal;
+  export default NewNotebookModal;
