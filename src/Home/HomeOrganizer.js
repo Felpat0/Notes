@@ -147,7 +147,6 @@ function HomeOrganizer() {
         editedNote.title = tmp.textContent || tmp.innerText || "";
         
         note = editedNote;
-        setNotes(temp);
       }
     });
   }
